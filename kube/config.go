@@ -3,9 +3,10 @@ package kube
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+
 	"github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1alpha2"
 	"gopkg.in/yaml.v2"
-	"io/ioutil"
 )
 
 type Config struct {

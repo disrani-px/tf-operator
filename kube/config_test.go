@@ -1,9 +1,10 @@
 package kube
 
 import (
+	"testing"
+
 	"github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1alpha2"
 	"k8s.io/api/core/v1"
-	"testing"
 )
 
 func TestConfig_Yaml(t *testing.T) {
@@ -18,14 +19,14 @@ func TestConfig_Yaml(t *testing.T) {
 	worker := new(v1alpha2.TFReplicaSpec)
 	TFReplicaSpecs[v1alpha2.TFReplicaTypeWorker] = worker
 	job.Spec = v1alpha2.TFJobSpec{
-		TFReplicaSpecs:TFReplicaSpecs,
+		TFReplicaSpecs: TFReplicaSpecs,
 	}
 
 	worker.Template = v1.PodTemplateSpec{
 		Spec: v1.PodSpec{
 			Containers: []v1.Container{
 				{
-					Name: "tensorflow",
+					Name:  "tensorflow",
 					Image: "gcr.io/tf-on-k8s-dogfood/tf_sample:dc944ff",
 				},
 			},

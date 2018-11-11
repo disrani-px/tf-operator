@@ -1,6 +1,6 @@
 package kube
 
 const (
-	Kind              = "TFJob"
-	APIVersion        = "kubeflow.org/v1alpha2"
+	Kind       = "TFJob"
+	APIVersion = "kubeflow.org/v1alpha2"
 )
