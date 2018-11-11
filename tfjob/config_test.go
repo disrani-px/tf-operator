@@ -1,4 +1,4 @@
-package kube
+package tfjob
 
 import (
 	"testing"
@@ -11,7 +11,7 @@ func TestConfig_Yaml(t *testing.T) {
 	config := NewConfig("job_tf")
 
 	// initialize params
-	job := config.Job
+	job := config.TFJob
 	job.Name = "example-job"
 
 	TFReplicaSpecs := make(map[v1alpha2.TFReplicaType]*v1alpha2.TFReplicaSpec)
