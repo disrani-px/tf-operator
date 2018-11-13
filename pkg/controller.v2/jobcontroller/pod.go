@@ -232,6 +232,18 @@ func (jc *JobController) GetPodSlices(pods []*v1.Pod, replicas int, logger *log.
 			logger.Warningf("Error when strconv.Atoi: %v", err)
 			continue
 		}
+
+		// if pod label is set, parameterize pvc name
+		pvcName, ok := pod.Labels[jc.Controller.GetParameterizePVCByReplicaIndexKey()]
+		if ok {
+			for i := range pod.Spec.Volumes {
+				if pod.Spec.Volumes[i].Name == pvcName && pod.Spec.Volumes[i].PersistentVolumeClaim != nil {
+					pod.Spec.Volumes[i].PersistentVolumeClaim.ClaimName = pod.Spec.Volumes[i].PersistentVolumeClaim.ClaimName +
+						"-" + fmt.Sprintf("%d", index)
+					logger.Infof("setting PVC to: %s", pod.Spec.Volumes[i].PersistentVolumeClaim.ClaimName)
+				}
+			}
+		}
 		if index < 0 || index >= replicas {
 			logger.Warningf("The label index is not expected: %d", index)
 		} else {

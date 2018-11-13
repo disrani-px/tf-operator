@@ -52,6 +52,9 @@ type ControllerInterface interface {
 	// Returns the Replica Index(value) in the labels of the job
 	GetReplicaIndexLabelKey() string
 
+	// Returns the key to fetch pvc name to parameterize
+	GetParameterizePVCByReplicaIndexKey() string
+
 	// Returns the Job from Informer Cache
 	GetJobFromInformerCache(namespace, name string) (metav1.Object, error)
 

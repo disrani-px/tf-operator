@@ -45,10 +45,11 @@ const (
 	controllerName = "tf-operator"
 
 	// labels for pods and servers.
-	tfReplicaTypeLabel  = "tf-replica-type"
-	tfReplicaIndexLabel = "tf-replica-index"
-	labelGroupName      = "group_name"
-	labelTFJobName      = "tf_job_name"
+	tfReplicaTypeLabel              = "tf-replica-type"
+	tfReplicaIndexLabel             = "tf-replica-index"
+	labelGroupName                  = "group_name"
+	labelTFJobName                  = "tf_job_name"
+	tfParameterizePVCByReplicaIndex = "parameterize-pvc-by-replica-index"
 )
 
 var (
@@ -461,4 +462,8 @@ func (tc *TFController) GetReplicaIndexLabelKey() string {
 
 func (tc *TFController) ControllerName() string {
 	return controllerName
+}
+
+func (tc *TFController) GetParameterizePVCByReplicaIndexKey() string {
+	return tfParameterizePVCByReplicaIndex
 }

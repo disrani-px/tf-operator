@@ -40,7 +40,7 @@ func (tc *TFController) addTFJob(obj interface{}) {
 
 			status := tfv1alpha2.TFJobStatus{
 				Conditions: []tfv1alpha2.TFJobCondition{
-					tfv1alpha2.TFJobCondition{
+					{
 						Type:               tfv1alpha2.TFJobFailed,
 						Status:             v1.ConditionTrue,
 						LastUpdateTime:     metav1.Now(),

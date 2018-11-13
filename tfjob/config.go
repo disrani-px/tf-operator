@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
-
 	"k8s.io/api/core/v1"
-
 	"github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1alpha2"
 	"gopkg.in/yaml.v2"
 )
