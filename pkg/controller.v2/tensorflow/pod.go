@@ -142,7 +142,7 @@ func (tc *TFController) createNewPod(tfjob *tfv1alpha2.TFJob, rt, index string, 
 			if vol.Name == pvcName && vol.PersistentVolumeClaim != nil {
 				podTemplate.Spec.Volumes[i].PersistentVolumeClaim.ClaimName = podTemplate.Spec.Volumes[i].PersistentVolumeClaim.ClaimName +
 					fmt.Sprintf("-%s", index)
-				logger.Infof(">>>>> setting pvc claim name to: %s",
+				logger.Infof("setting pvc claim name to: %s",
 					podTemplate.Spec.Volumes[i].PersistentVolumeClaim.ClaimName)
 			}
 		}
