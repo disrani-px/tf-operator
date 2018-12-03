@@ -63,6 +63,16 @@ type TFJobSpec struct {
 	//     "Worker": TFReplicaSpec,
 	//   }
 	TFReplicaSpecs map[TFReplicaType]*TFReplicaSpec `json:"tfReplicaSpecs"`
+
+	// volumeClaimTemplates is a list of claims that pods are allowed to reference.
+	// The StatefulSet controller is responsible for mapping network identities to
+	// claims in a way that maintains the identity of a pod. Every claim in
+	// this list must have at least one matching (by name) volumeMount in one
+	// container in the template. A claim in this list takes precedence over
+	// any volumes in the template, with the same name.
+	// TODO: Define the behavior if a claim already exists with the same name.
+	// +optional
+	VolumeClaimTemplates []v1.PersistentVolumeClaim `json:"volumeClaimTemplates,omitempty" protobuf:"bytes,4,rep,name=volumeClaimTemplates"`
 }
 
 // TFReplicaSpec is a description of the TFReplica
